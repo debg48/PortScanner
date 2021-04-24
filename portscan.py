@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 from socket import *
 import optparse
 from threading import *
