@@ -1,10 +1,12 @@
+#!/usr/bin/python3
+
 from socket import *
 import optparse
 from threading import *
 
 def connScan(tgHost,tgPort):
         try:
-                sock=socket(AF_NET,SOCK_STREAM)
+                sock=socket(AF_INET,SOCK_STREAM)
                 sock.connect((tgHost,tgPort))
                 print('[+]%d/tcp Open'%tgPort)
         except:
@@ -24,7 +26,8 @@ def portscan(tgHost,tgPort):
                 print('[+]Scan Reults for:' + tgIP)
         setdefaulttimeout(0)
         for port in tgPort:
-                t=Thread(target=connScan,args=(tgHost,int(tgPort)))
+                t=Thread(target=connScan,args=(tgHost,int(port)))
+                t.start()
 
 def main():
         parser=optparse.OptionParser("Usage of Program :" + " -H <target host> -p <target port> ")
